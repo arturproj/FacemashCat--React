@@ -1,0 +1,59 @@
+:root {
+  --purple: #615087;
+  --peach: #ffd5cd;
+  --pink: #efbbcf;
+  --lilac: #c3aed6;
+}
+
+body {
+  background-color: rgb(255, 255, 255);
+}
+
+#root {
+  grid-template-rows: max-content;
+  width: calc(100% - 32px);
+  height: calc(98vh - 32px);
+  background-color: rgba(255, 255, 255);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.handler-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 4px rgb(255, 255, 255);
+  background-color: rgba(187, 157, 157, 0.466);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.handler-card:hover {
+  background-color: rgba(187, 157, 157, 0.918);
+  border: solid 4px rgb(255, 255, 255);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: 0.9s;
+  animation-timing-function: ease-in;
+}
+
+svg {
+  margin: 0;
+  padding: 0;
+}
+#svgPath2{
+  width: 200px !important;
+}
+
+.handler-card img {
+  clip-path: url(#svgPath2);
+  -webkit-clip-path: url(#svgPath2);
+  position: relative;
+  /* top: -20px; */
+  transform: scale(3.5)
+}
