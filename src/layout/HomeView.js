@@ -1,83 +1,113 @@
 import React, { useState } from "react";
-import { MaskCats } from "../helpers/cats.api";
-
-export function CardCat(props) {
-  const { cat, handle, property } = props;
-  console.log("CardCat", props);
-  return (
-    <div className="handler-card" onClick={() => handle()}>
-      <svg height="0px" width="0px">
-        <defs>
-          <clipPath id="svgPath2">
-            <path
-              fill="#00B6B5"
-              d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z"
-            />
-          </clipPath>
-        </defs>
-      </svg>
-      <img src={cat.picture} width="100" height="100" />
-    </div>
-  );
-}
-
-export function Column(props) {
-  return (
-    <div className="col-12 col-md-6 col-handler">
-      {props.cat ? <CardCat {...props} /> : null}
-    </div>
-  );
-}
-function handlerCat(cats) {
-  return cats[Math.floor(Math.random() * cats.length)];
-}
+import { handlerCat, resetAnyLikes, resetTotLikes } from "../helpers/cats.api";
+import logo from "../img/logo sign and_4189876.jpg";
+import { ColBoxes } from "../components/FaceMash";
+import { FaUndoAlt, FaStar } from "../components/ButtonAweson";
 
 export default function HomeView(props) {
-  const [concurrentA, setA] = useState(null);
-  const [concurrentB, setB] = useState(null);
+  const [contestantA, setA] = useState(null);
+  const [contestantB, setB] = useState(null);
+  const [currentID, setID] = useState(0);
 
   function overwriteCat(property = null) {
-    let newCat = handlerCat(props.cats);
+    let id = currentID;
+    let newCat = handlerCat(props.cats, id);
+    console.log(newCat, currentID);
     switch (property) {
-      case "concurrentA":
-        if (concurrentA && newCat.id !== concurrentA.id) {
+      case "contestantA":
+        if (
+          contestantA &&
+          // newCat.getId &&
+          newCat.getId() !== contestantA.getId()
+        ) {
           setA(newCat);
+          setID(id <= 99 ? id++ : 0);
         } else {
           overwriteCat(property);
         }
         break;
-      case "concurrentB":
-        if (concurrentB && newCat.id !== concurrentB.id) {
+      case "contestantB":
+        if (
+          contestantB &&
+          // newCat.getId &&
+          newCat.getId() !== contestantB.getId()
+        ) {
           setB(newCat);
+          setID(id <= 99 ? id++ : 0);
         } else {
           overwriteCat(property);
         }
         break;
 
       default:
-        setA(newCat);
-        setB(handlerCat(props.cats));
+        setA(props.cats[id]);
+        setB(props.cats[id + 1]);
+        setID(id <= 99 ? id + 2 : 0);
         break;
     }
   }
 
-  if (props.cats.length && concurrentA === concurrentB) {
+  if (props.cats.length && contestantA === contestantB) {
     console.log("update", props);
     overwriteCat();
   }
 
   return (
-    <div className="row h-100 row-">
-      <Column
-        property="concurrentA"
-        cat={concurrentA}
-        handle={() => overwriteCat("concurrentB")}
-      />
-      <Column
-        property="concurrentB"
-        cat={concurrentB}
-        handle={() => overwriteCat("concurrentA")}
-      />
-    </div>
+    <React.Fragment>
+      <div className="row h-100 mx-auto">
+        <img
+          src={logo}
+          className="logo-my-caty img-thumbnail rounded-circle mx-auto"
+          alt="..."
+        />
+        <ColBoxes
+          property="contestantA"
+          cat={contestantA}
+          handle={() => {
+            contestantA.dispatch();
+            overwriteCat("contestantB");
+          }}
+        />
+        <ColBoxes
+          property="contestantB"
+          cat={contestantB}
+          handle={() => {
+            contestantB.dispatch();
+            overwriteCat("contestantA");
+          }}
+        />
+        <div className="awesom-home awesom-left  w-50 d-flex justify-content-start m-6">
+          <div
+            className="btn btn-outline-dark btn-tooltip"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="Click for Reset Cats Likes or Double Click for Reset Global Likes"
+            data-container="body"
+            data-animation="true"
+            onClick={() => (props.cats ? resetAnyLikes(props.cats) : null)}
+          >
+            <FaUndoAlt />
+          </div>
+        </div>
+        <div className="awesom-home awesom-right w-50 d-flex justify-content-end m-6">
+          <a
+            href="/score"
+            className="btn btn-outline-dark"
+            className="btn btn-outline-dark btn-tooltip"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="Scores"
+            data-container="body"
+            data-animation="true"
+          >
+            <span className="h4 text-bold">Global </span>
+            <FaStar />{" "}
+            <span className="h4 text-bold">
+              {localStorage.getItem("totLikes") || 0}
+            </span>
+          </a>
+        </div>
+      </div>
+    </React.Fragment>
   );
 }

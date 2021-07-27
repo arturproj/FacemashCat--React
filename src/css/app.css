@@ -26,14 +26,15 @@ body {
   justify-content: center;
   align-items: center;
   border: solid 4px rgb(255, 255, 255);
-  background-color: rgba(187, 157, 157, 0.466);
+  background-color: #eceeee;
   position: absolute;
   width: 100%;
   height: 100%;
+  filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.5));
 }
 
 .handler-card:hover {
-  background-color: rgba(187, 157, 157, 0.918);
+  background-color: #cdd4d4;
   border: solid 4px rgb(255, 255, 255);
   position: absolute;
   width: 100%;
@@ -45,15 +46,39 @@ body {
 svg {
   margin: 0;
   padding: 0;
-}
-#svgPath2{
-  width: 200px !important;
+  /* border: solid 10px #fff; */
 }
 
 .handler-card img {
-  clip-path: url(#svgPath2);
-  -webkit-clip-path: url(#svgPath2);
+  clip-path: url(#svgPath);
+  -webkit-clip-path: url(#svgPath);
   position: relative;
-  /* top: -20px; */
-  transform: scale(3.5)
+  top: -20px;
+  transform: scale(2);
+}
+
+.logo-my-caty {
+  position: absolute;
+  z-index: 1050;
+  width: 150px;
+  height: 150px;
+
+  left: 50%;
+  transform: translate(-50%, -15%);
+}
+
+.awesom-home {
+  position: fixed !important;
+  bottom: 16px;
+}
+
+.awesom-left {
+  left: 16px;
+  margin: auto;
+}
+
+.awesom-right {
+  float: right;
+  right: 16px;
+  margin: auto;
 }
