@@ -47,5 +47,6 @@ module.exports = (env, argv) => {
     historyApiFallback: true,
   };
 
+  
   return config;
 };

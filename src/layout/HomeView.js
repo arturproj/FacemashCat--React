@@ -2,13 +2,6 @@ import React, { useState } from "react";
 import { handlerCat, resetAnyLikes, resetTotLikes } from "../helpers/cats.api";
 import logo from "../img/logo sign and_4189876.jpg";
 import { ColBoxImage } from "../components/cols_boxes";
-import {
-  BaseBTN,
-  BaseEventBTN,
-  BaseUrlBTN,
-  BaseBodyBTN,
-} from "../components/btn";
-
 import { FaUndoAlt, FaHeart } from "../components/icons_awesome";
 
 export default function HomeView(props) {
@@ -100,7 +93,7 @@ export default function HomeView(props) {
       </div>
       <div className="awesom-home awesom-right w-50 d-flex justify-content-end m-6">
         <a
-          href="/score"
+          href="/FacemashCat--React/score"
           className="btn btn-outline-dark"
           className="btn btn-outline-dark btn-tooltip"
           data-bs-toggle="tooltip"

@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter, Switch, Route, Link } from "react-router-dom";
 import { findAnyCats } from "./helpers/cats.api";
 
 import HomeView from "./layout/HomeView";
@@ -34,16 +34,14 @@ class App extends React.Component {
   render() {
     const { cats } = this.state;
     return (
-      <Router>
-        <Switch>
-          <Route exact path="/score">
+      <HashRouter basename="/">
+          <Route exact path="/facemash-cat-react/score/">
             <ScoreView cats={cats} />
           </Route>
-          <Route path="*">
+          <Route exact path="/FacemashCat--React">
             <HomeView cats={cats} />
           </Route>
-        </Switch>
-      </Router>
+        </HashRouter>
     );
   }
 }
