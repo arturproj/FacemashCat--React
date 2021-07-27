@@ -34,14 +34,16 @@ class App extends React.Component {
   render() {
     const { cats } = this.state;
     return (
-      <HashRouter basename="/">
+      <Router>
+        <Switch>
           <Route exact path="/facemash-cat-react/score/">
             <ScoreView cats={cats} />
           </Route>
-          <Route exact path="/FacemashCat--React">
+          <Route exact path="*">
             <HomeView cats={cats} />
           </Route>
-        </HashRouter>
+        </Switch>
+      </Router>
     );
   }
 }
