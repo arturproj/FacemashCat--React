@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { handlerCat, resetAnyLikes, resetTotLikes } from "../helpers/cats.api";
 import logo from "../img/logo sign and_4189876.jpg";
-import { ColBoxes } from "../components/FaceMash";
-import { FaUndoAlt, FaStar } from "../components/ButtonAweson";
+import { ColBoxImage } from "../components/FaceMash";
+import { FaUndoAlt, FaHeart } from "../components/ButtonAweson";
 
 export default function HomeView(props) {
   const [contestantA, setA] = useState(null);
@@ -15,11 +15,7 @@ export default function HomeView(props) {
     console.log(newCat, currentID);
     switch (property) {
       case "contestantA":
-        if (
-          contestantA &&
-          // newCat.getId &&
-          newCat.getId() !== contestantA.getId()
-        ) {
+        if (contestantA && newCat && newCat.getId() !== contestantA.getId()) {
           setA(newCat);
           setID(id <= 99 ? id++ : 0);
         } else {
@@ -27,11 +23,7 @@ export default function HomeView(props) {
         }
         break;
       case "contestantB":
-        if (
-          contestantB &&
-          // newCat.getId &&
-          newCat.getId() !== contestantB.getId()
-        ) {
+        if (contestantB && newCat && newCat.getId() !== contestantB.getId()) {
           setB(newCat);
           setID(id <= 99 ? id++ : 0);
         } else {
@@ -53,61 +45,58 @@ export default function HomeView(props) {
   }
 
   return (
-    <React.Fragment>
-      <div className="row h-100 mx-auto">
-        <img
-          src={logo}
-          className="logo-my-caty img-thumbnail rounded-circle mx-auto"
-          alt="..."
-        />
-        <ColBoxes
-          property="contestantA"
-          cat={contestantA}
-          handle={() => {
-            contestantA.dispatch();
-            overwriteCat("contestantB");
-          }}
-        />
-        <ColBoxes
-          property="contestantB"
-          cat={contestantB}
-          handle={() => {
-            contestantB.dispatch();
-            overwriteCat("contestantA");
-          }}
-        />
-        <div className="awesom-home awesom-left  w-50 d-flex justify-content-start m-6">
-          <div
-            className="btn btn-outline-dark btn-tooltip"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            title="Click for Reset Cats Likes or Double Click for Reset Global Likes"
-            data-container="body"
-            data-animation="true"
-            onClick={() => (props.cats ? resetAnyLikes(props.cats) : null)}
-          >
-            <FaUndoAlt />
-          </div>
-        </div>
-        <div className="awesom-home awesom-right w-50 d-flex justify-content-end m-6">
-          <a
-            href="/score"
-            className="btn btn-outline-dark"
-            className="btn btn-outline-dark btn-tooltip"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            title="Scores"
-            data-container="body"
-            data-animation="true"
-          >
-            <span className="h4 text-bold">Global </span>
-            <FaStar />{" "}
-            <span className="h4 text-bold">
-              {localStorage.getItem("totLikes") || 0}
-            </span>
-          </a>
+    <div className="row h-100 mx-auto">
+      <img
+        src={logo}
+        className="logo-my-caty img-thumbnail rounded-circle mx-auto w-auto"
+        alt="..."
+      />
+      <ColBoxImage
+        property="contestantA"
+        cat={contestantA}
+        handle={() => {
+          contestantA.dispatch();
+          overwriteCat("contestantB");
+        }}
+      />
+      <ColBoxImage
+        property="contestantB"
+        cat={contestantB}
+        handle={() => {
+          contestantB.dispatch();
+          overwriteCat("contestantA");
+        }}
+      />
+      <div className="awesom-home awesom-left  w-50 d-flex justify-content-start m-6">
+        <div
+          className="btn btn-outline-dark btn-tooltip"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="Click for Reset Cats Likes or Double Click for Reset Global Likes"
+          data-container="body"
+          data-animation="true"
+          onClick={() => (props.cats ? resetAnyLikes(props.cats) : null)}
+        >
+          <FaUndoAlt />
         </div>
       </div>
-    </React.Fragment>
+      <div className="awesom-home awesom-right w-50 d-flex justify-content-end m-6">
+        <a
+          href="/score"
+          className="btn btn-outline-dark"
+          className="btn btn-outline-dark btn-tooltip"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="Scores"
+          data-container="body"
+          data-animation="true"
+        >
+          <FaHeart />{" "}
+          <span className="h4 text-bold">
+            {localStorage.getItem("totLikes") || 0}
+          </span>
+        </a>
+      </div>
+    </div>
   );
 }

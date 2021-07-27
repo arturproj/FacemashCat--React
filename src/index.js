@@ -30,12 +30,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { cats } = this.state
+    const { cats } = this.state;
     return (
       <Router>
         <Switch>
           <Route exact path="/score">
-            <ScoreView />
+            <ScoreView cats={cats} />
           </Route>
           <Route path="*">
             <HomeView cats={cats} />

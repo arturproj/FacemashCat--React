@@ -7,13 +7,17 @@ export class Cat {
   #likes;
   #picture;
   index;
+  log;
   /**
    * Cat formatter
    * @param {object} cat
    * @return {object} Cat
    */
   constructor(cat) {
-    this.store = () => localStorage.setItem(this.#id, this.#likes);
+    this.store = () => {
+      this.log = { id: this.#id, likes: this.#likes };
+      return localStorage.setItem(this.#id, this.#likes);
+    };
     this.load = () => Number(localStorage.getItem(this.#id)) || 0;
     this.dispatch = () => {
       let totLikes = Number(localStorage.getItem("totLikes")) || 0;

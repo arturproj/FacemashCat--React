@@ -54,7 +54,8 @@ svg {
   -webkit-clip-path: url(#svgPath);
   position: relative;
   top: -20px;
-  transform: scale(2);
+  transform: scale(4);
+  width: 100px;
 }
 
 .logo-my-caty {
