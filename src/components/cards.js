@@ -32,32 +32,16 @@ export function CardCat(props) {
   );
 }
 
-export function CardTOPWinner({ cat }) {
+export function CardWinner({ cat, pos }) {
   return (
     <div className="card mt-1 px-3 py-4">
       <div className="author winner align-items-center">
+        <span className={`rang-winner ${pos < 10 ? "m-rang-left" : ""}`}>
+          {pos}
+        </span>
         <img src={cat.getPicture()} alt="..." className="avatar shadow" />
         <div className="name ps-3">
-          <span>Mathew Glock</span>
-          <div className="stats">
-            <small>Liked {cat.getLikes()}</small>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export function CardWinner({ cat }) {
-  return (
-    <div className="card mt-1 px-3 py-4">
-      <div className="author align-items-center">
-        <img src={cat.getPicture()} alt="..." className="avatar shadow" />
-        <div className="name ps-3">
-          <span>Mathew Glock</span>
-          <div className="stats">
-            <small>Liked {cat.getLikes()}</small>
-          </div>
+          <span>Like {cat.getLikes()} people</span>
         </div>
       </div>
     </div>

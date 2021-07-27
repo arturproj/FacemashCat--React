@@ -85,6 +85,7 @@ svg {
 }
 
 .col-score-top5 {
+  filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.5));
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -92,11 +93,10 @@ svg {
 }
 
 .col-score-top5 .card {
-  width: 300px; 
+  width: 300px;
 }
 
 .col-score-top5 .avatar {
- 
   width: 80px !important;
   height: 80px !important;
   min-height: 48px !important
@@ -104,13 +104,42 @@ svg {
 }
 .col-score-top5 .avatar img {
   background-size: cover;
-  background-position: center ;
+  background-position: center;
 }
 
-
-
-.col-score-top10  {
-  height: 60%;
+.col-score-top10 {
+  filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.5));
+  height: 70%;
   overflow-x: hidden;
   overflow-y: auto;
+  padding: 18px;
+}
+
+.col-score-top10::-webkit-scrollbar {
+  width: 8px;
+}
+
+.col-score-top10::-webkit-scrollbar-thumb {
+  background: #2b2b2b3d;
+  border-radius: 8px;
+}
+
+.col-score-top10::-webkit-scrollbar-thumb:hover {
+  background: #2b2b2b63;
+  border-radius: 8px;
+}
+.col-score-top10::-webkit-scrollbar-track {
+  background: #ffffff41;
+  border-radius: 8px;
+}
+
+.rang-winner {
+  font-size: 208%;
+  font-weight: 800;
+  padding: 0;
+  margin: auto 16px;
+}
+
+.m-rang-left {
+  margin-left: 33px;
 }

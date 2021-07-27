@@ -1,6 +1,7 @@
 import React from "react";
 import { ColBoxTop5, ColBoxLastTop10 } from "../components/FaceMash";
 import logo from "../img/logo sign and_4189876.jpg";
+import "../css/score.css";
 
 export default function ScoreView(props) {
   props.cats.sort(

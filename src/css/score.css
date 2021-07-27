@@ -1,0 +1,9 @@
+:root {
+  --scorebak: #cdd4d4;
+}
+
+body,
+#root {
+  color: var(--scorebak) !important;
+  background-color: var(--scorebak) !important;
+}
