@@ -93,7 +93,7 @@ export default function HomeView(props) {
       </div>
       <div className="awesom-home awesom-right w-50 d-flex justify-content-end m-6">
         <a
-          href="/FacemashCat--React/score"
+          href="/score"
           className="btn btn-outline-dark"
           className="btn btn-outline-dark btn-tooltip"
           data-bs-toggle="tooltip"

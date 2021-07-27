@@ -34,10 +34,10 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/facemash-cat-react/score/">
+          <Route exact path="/score">
             <ScoreView cats={cats} />
           </Route>
-          <Route exact path="*">
+          <Route exact path="/">
             <HomeView cats={cats} />
           </Route>
         </Switch>
