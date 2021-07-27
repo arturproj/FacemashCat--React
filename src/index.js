@@ -22,6 +22,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+
+    
     findAnyCats().then((res) => this.setState({ cats: res }));
   }
 

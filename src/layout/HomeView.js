@@ -1,15 +1,24 @@
 import React, { useState } from "react";
 import { handlerCat, resetAnyLikes, resetTotLikes } from "../helpers/cats.api";
 import logo from "../img/logo sign and_4189876.jpg";
-import { ColBoxImage } from "../components/FaceMash";
-import { FaUndoAlt, FaHeart } from "../components/ButtonAweson";
+import { ColBoxImage } from "../components/cols_boxes";
+import {
+  BaseBTN,
+  BaseEventBTN,
+  BaseUrlBTN,
+  BaseBodyBTN,
+} from "../components/btn";
+
+import { FaUndoAlt, FaHeart } from "../components/icons_awesome";
 
 export default function HomeView(props) {
   const [contestantA, setA] = useState(null);
   const [contestantB, setB] = useState(null);
   const [currentID, setID] = useState(0);
+  const [globalLike, setGLike] = useState(0);
 
   function overwriteCat(property = null) {
+    setGLike(localStorage.getItem("totLikes"));
     let id = currentID;
     let newCat = handlerCat(props.cats, id);
     console.log(newCat, currentID);
@@ -67,6 +76,7 @@ export default function HomeView(props) {
           overwriteCat("contestantA");
         }}
       />
+
       <div className="awesom-home awesom-left  w-50 d-flex justify-content-start m-6">
         <div
           className="btn btn-outline-dark btn-tooltip"
@@ -76,6 +86,14 @@ export default function HomeView(props) {
           data-container="body"
           data-animation="true"
           onClick={() => (props.cats ? resetAnyLikes(props.cats) : null)}
+          onDoubleClick={() =>
+            props.cats
+              ? (() => {
+                  resetTotLikes();
+                  setGLike(localStorage.getItem("totLikes"));
+                })()
+              : null
+          }
         >
           <FaUndoAlt />
         </div>
@@ -91,10 +109,7 @@ export default function HomeView(props) {
           data-container="body"
           data-animation="true"
         >
-          <FaHeart />{" "}
-          <span className="h4 text-bold">
-            {localStorage.getItem("totLikes") || 0}
-          </span>
+          <FaHeart /> <span className="h4 text-bold">{globalLike || 0}</span>
         </a>
       </div>
     </div>
