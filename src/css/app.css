@@ -83,3 +83,34 @@ svg {
   right: 16px;
   margin: auto;
 }
+
+.col-score-top5 {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.col-score-top5 .card {
+  width: 300px; 
+}
+
+.col-score-top5 .avatar {
+ 
+  width: 80px !important;
+  height: 80px !important;
+  min-height: 48px !important
+  ;
+}
+.col-score-top5 .avatar img {
+  background-size: cover;
+  background-position: center ;
+}
+
+
+
+.col-score-top10  {
+  height: 60%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
