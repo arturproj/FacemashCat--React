@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import { HashRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { findAnyCats } from "./helpers/cats.api";
 
 import HomeView from "./layout/HomeView";
@@ -22,8 +22,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-
-    
     findAnyCats().then((res) => this.setState({ cats: res }));
   }
 
